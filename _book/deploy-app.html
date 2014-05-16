@@ -3,7 +3,7 @@
     <head prefix="og: http://ogp.me/ns# book: http://ogp.me/ns/book#">
         
         <meta charset="UTF-8">
-        <title>Introduction | SSCC: Build a Node.js Project from Scratch</title>
+        <title>Deploy the codes | SSCC: Build a Node.js Project from Scratch</title>
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="robots" content="index, follow">
@@ -13,11 +13,11 @@
         <meta name="generator" content="www.gitbook.io">
 
         
-        <link rel="next" href="./node-npm.html" />
         
+        <link rel="prev" href="./heroku.html" />
         
 
-        <meta property="og:title" content="Introduction | SSCC: Build a Node.js Project from Scratch">
+        <meta property="og:title" content="Deploy the codes | SSCC: Build a Node.js Project from Scratch">
         <meta property="og:site_name" content="SSCC: Build a Node.js Project from Scratch">
         <meta property="og:type" content="book">
         <meta property="og:locale" content="en_US">
@@ -40,7 +40,7 @@
 
 
         
-    <div class="book"  data-level="0" data-basepath="." data-revision="1400263160797">
+    <div class="book"  data-level="5" data-basepath="." data-revision="1400263160797">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -165,34 +165,99 @@
             <div class="page-wrapper" tabindex="-1">
                 <div class="book-progress">
     <div class="bar">
-        <div class="inner" style="width: 0%;min-width: 0%;"></div>
+        <div class="inner" style="width: 100%;min-width: 80%;"></div>
     </div>
     <div class="chapters">
     
         <a href="./index.html" title="Introduction" class="chapter done new-chapter" data-progress="0" style="left: 0%;"></a>
     
-        <a href="./node-npm.html" title="Node and npm" class="chapter  new-chapter" data-progress="1" style="left: 20%;"></a>
+        <a href="./node-npm.html" title="Node and npm" class="chapter done new-chapter" data-progress="1" style="left: 20%;"></a>
     
-        <a href="./express.html" title="Express" class="chapter  new-chapter" data-progress="2" style="left: 40%;"></a>
+        <a href="./express.html" title="Express" class="chapter done new-chapter" data-progress="2" style="left: 40%;"></a>
     
-        <a href="./new-app.html" title="Create a new app" class="chapter  new-chapter" data-progress="3" style="left: 60%;"></a>
+        <a href="./new-app.html" title="Create a new app" class="chapter done new-chapter" data-progress="3" style="left: 60%;"></a>
     
-        <a href="./heroku.html" title="Heroku" class="chapter  new-chapter" data-progress="4" style="left: 80%;"></a>
+        <a href="./heroku.html" title="Heroku" class="chapter done new-chapter" data-progress="4" style="left: 80%;"></a>
     
-        <a href="./deploy-app.html" title="Deploy the codes" class="chapter  new-chapter" data-progress="5" style="left: 100%;"></a>
+        <a href="./deploy-app.html" title="Deploy the codes" class="chapter done new-chapter" data-progress="5" style="left: 100%;"></a>
     
     </div>
 </div>
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_311">
+                    <section class="normal" id="section-gitbook_312">
                     
-                        <h1 id="sscc-build-a-node-js-project-from-scratch">SSCC: Build a Node.js Project from Scratch</h1>
-<p>Node.js What&#39;s all the buzz about? Why are so many people talking about it? How can I get some of this awesome?</p>
-<p>Spend a day with <a href="">Dale Sande</a>, Front-End development instructor with <a href="">Code Fellows</a>, and come away knowing the building blocks of setting up a Node.js project. Build a Node.js project from scratch, learn how to install the Express framework, learn about Yeomen Generators, create Grunt Tasks and build and install your own Bower Packages.</p>
-<p>In addition to these core concepts, we will cover customization, installation of the libsass language, how to use the Jade Templating language and deploy your project to Heroku!</p>
-<p>Come ready to learn the next evolution of web application development!</p>
+                        <h1 id="deploy-your-first-app">Deploy your first app</h1>
+<p>At this point, you should have an app that works locally on your computer. The following steps outline updates you need to make in order to deploy the codes.</p>
+<h2 id="update-package-json">Update package.json</h2>
+<p>In this step, we need to add some code to the <code>package.json</code> file so that we can run the app from a remote server.</p>
+<p>Right now, there is a good chance that the file will look like this:</p>
+<pre><code>{
+  &quot;name&quot;: &quot;application-name&quot;,
+  &quot;version&quot;: &quot;0.0.1&quot;,
+  &quot;private&quot;: true,
+  &quot;scripts&quot;: {
+    &quot;start&quot;: &quot;node ./bin/www&quot;
+  },
+  &quot;dependencies&quot;: {
+    &quot;express&quot;: &quot;~4.0.0&quot;,
+    &quot;static-favicon&quot;: &quot;~1.0.0&quot;,
+    &quot;morgan&quot;: &quot;~1.0.0&quot;,
+    &quot;cookie-parser&quot;: &quot;~1.0.1&quot;,
+    &quot;body-parser&quot;: &quot;~1.0.0&quot;,
+    &quot;debug&quot;: &quot;~0.7.4&quot;,
+    &quot;jade&quot;: &quot;~1.3.0&quot;
+  }
+}
+</code></pre><p>At the end of the <code>dependencies&quot;: { ... }</code> object, you need to add a comma <code>,</code> so that we can add more code.  First let&#39;s add the <code>main</code> keyword:</p>
+<pre><code>&quot;main&quot;: &quot;app.js&quot;,
+</code></pre><p>Notice the trailing comma? This is because we are going to add more stuff. After that, add in the <code>engines</code> keyword and the specific engines we need to run this app:</p>
+<pre><code>&quot;engines&quot;: {
+  &quot;node&quot;: &quot;0.10.26&quot;,
+  &quot;npm&quot;: &quot;1.4.3&quot;
+}
+</code></pre><p>Notice, this is the last line, so no trailing comma. We want it all to look like the following:</p>
+<pre><code>{
+  &quot;name&quot;: &quot;application-name&quot;,
+  &quot;version&quot;: &quot;0.0.1&quot;,
+  &quot;private&quot;: true,
+  &quot;scripts&quot;: {
+    &quot;start&quot;: &quot;node ./bin/www&quot;
+  },
+  &quot;dependencies&quot;: {
+    &quot;express&quot;: &quot;~4.0.0&quot;,
+    &quot;static-favicon&quot;: &quot;~1.0.0&quot;,
+    &quot;morgan&quot;: &quot;~1.0.0&quot;,
+    &quot;cookie-parser&quot;: &quot;~1.0.1&quot;,
+    &quot;body-parser&quot;: &quot;~1.0.0&quot;,
+    &quot;debug&quot;: &quot;~0.7.4&quot;,
+    &quot;jade&quot;: &quot;~1.3.0&quot;
+  },
+  &quot;main&quot;: &quot;app.js&quot;,
+  &quot;engines&quot;: {
+    &quot;node&quot;: &quot;0.10.26&quot;,
+    &quot;npm&quot;: &quot;1.4.3&quot;
+  }
+}
+</code></pre><h2 id="add-the-procfile">Add the Procfile</h2>
+<p>This is a file that Heroku needs in order to start the app.</p>
+<pre><code>$ touch Procfile
+</code></pre><p>Add the following code:</p>
+<pre><code>web: npm start
+</code></pre><h2 id="make-this-a-git-repo">Make this a Git repo</h2>
+<p>It is important to make this a git repo BEFORE you create the Heroku server.</p>
+<pre><code>$ git add .
+$ git commit -m &quot;initial commit&quot;
+</code></pre><p>It is not required at this time to make this a Github repo, but you may want to do this if you make this a real app.</p>
+<h2 id="deploy-the-codes">Deploy the codes</h2>
+<p>This is pretty hard here. Make sure to follow the commands specifically:</p>
+<pre><code>$ heroku create &lt;your-app-name&gt;
+$ git push heroku master
+</code></pre><h2 id="rejoice">Rejoice</h2>
+<p>If all is well, you should see a return like this:</p>
+<pre><code>http://&lt;your-new-app&gt;.herokuapp.com/ deployed to Heroku
+</code></pre><p>Go to that URL and REJOICE!!!!!</p>
 
                     
                     </section>
@@ -202,8 +267,8 @@
         </div>
 
         
+        <a href="./heroku.html" class="navigation navigation-prev navigation-unique"><i class="fa fa-angle-left"></i></a>
         
-        <a href="./node-npm.html" class="navigation navigation-next navigation-unique"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

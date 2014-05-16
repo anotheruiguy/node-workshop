@@ -3,7 +3,7 @@
     <head prefix="og: http://ogp.me/ns# book: http://ogp.me/ns/book#">
         
         <meta charset="UTF-8">
-        <title>Introduction | SSCC: Build a Node.js Project from Scratch</title>
+        <title>Heroku | SSCC: Build a Node.js Project from Scratch</title>
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="robots" content="index, follow">
@@ -13,11 +13,13 @@
         <meta name="generator" content="www.gitbook.io">
 
         
-        <link rel="next" href="./node-npm.html" />
+        <link rel="next" href="./deploy-app.html" />
         
+        
+        <link rel="prev" href="./new-app.html" />
         
 
-        <meta property="og:title" content="Introduction | SSCC: Build a Node.js Project from Scratch">
+        <meta property="og:title" content="Heroku | SSCC: Build a Node.js Project from Scratch">
         <meta property="og:site_name" content="SSCC: Build a Node.js Project from Scratch">
         <meta property="og:type" content="book">
         <meta property="og:locale" content="en_US">
@@ -40,7 +42,7 @@
 
 
         
-    <div class="book"  data-level="0" data-basepath="." data-revision="1400263160797">
+    <div class="book"  data-level="4" data-basepath="." data-revision="1400263160797">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -165,19 +167,19 @@
             <div class="page-wrapper" tabindex="-1">
                 <div class="book-progress">
     <div class="bar">
-        <div class="inner" style="width: 0%;min-width: 0%;"></div>
+        <div class="inner" style="width: 80%;min-width: 60%;"></div>
     </div>
     <div class="chapters">
     
         <a href="./index.html" title="Introduction" class="chapter done new-chapter" data-progress="0" style="left: 0%;"></a>
     
-        <a href="./node-npm.html" title="Node and npm" class="chapter  new-chapter" data-progress="1" style="left: 20%;"></a>
+        <a href="./node-npm.html" title="Node and npm" class="chapter done new-chapter" data-progress="1" style="left: 20%;"></a>
     
-        <a href="./express.html" title="Express" class="chapter  new-chapter" data-progress="2" style="left: 40%;"></a>
+        <a href="./express.html" title="Express" class="chapter done new-chapter" data-progress="2" style="left: 40%;"></a>
     
-        <a href="./new-app.html" title="Create a new app" class="chapter  new-chapter" data-progress="3" style="left: 60%;"></a>
+        <a href="./new-app.html" title="Create a new app" class="chapter done new-chapter" data-progress="3" style="left: 60%;"></a>
     
-        <a href="./heroku.html" title="Heroku" class="chapter  new-chapter" data-progress="4" style="left: 80%;"></a>
+        <a href="./heroku.html" title="Heroku" class="chapter done new-chapter" data-progress="4" style="left: 80%;"></a>
     
         <a href="./deploy-app.html" title="Deploy the codes" class="chapter  new-chapter" data-progress="5" style="left: 100%;"></a>
     
@@ -186,13 +188,30 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_311">
+                    <section class="normal" id="section-gitbook_314">
                     
-                        <h1 id="sscc-build-a-node-js-project-from-scratch">SSCC: Build a Node.js Project from Scratch</h1>
-<p>Node.js What&#39;s all the buzz about? Why are so many people talking about it? How can I get some of this awesome?</p>
-<p>Spend a day with <a href="">Dale Sande</a>, Front-End development instructor with <a href="">Code Fellows</a>, and come away knowing the building blocks of setting up a Node.js project. Build a Node.js project from scratch, learn how to install the Express framework, learn about Yeomen Generators, create Grunt Tasks and build and install your own Bower Packages.</p>
-<p>In addition to these core concepts, we will cover customization, installation of the libsass language, how to use the Jade Templating language and deploy your project to Heroku!</p>
-<p>Come ready to learn the next evolution of web application development!</p>
+                        <h1 id="heroku">Heroku</h1>
+<p>The following are basic steps needed to quickly set up a Node.js app with Express and deploy to Heroku.</p>
+<h3 id="step-1-heroku-account">Step 1 - Heroku account</h3>
+<p>Make sure you have a Heroku account set up</p>
+<h3 id="step-2-install-heroku-toolbelt">Step 2 - Install Heroku Toolbelt</h3>
+<p>Download and install the tool belt package specific for your OX</p>
+<h5 id="osx">OSX</h5>
+<p><a href="https://toolbelt.heroku.com/osx" target="_blank">https://toolbelt.heroku.com/osx</a></p>
+<h4 id="windows">Windows</h4>
+<p><a href="https://toolbelt.heroku.com/windows" target="_blank">https://toolbelt.heroku.com/windows</a></p>
+<h4 id="linux">Linux</h4>
+<p>  $ wget -qO- <a href="https://toolbelt.heroku.com/install-ubuntu.sh" target="_blank">https://toolbelt.heroku.com/install-ubuntu.sh</a> | sh</p>
+<h3 id="step-3-log-into-you-account">Step 3 - Log into you account</h3>
+<p>Once toolbelt is installed, you should be able to access your account</p>
+<p>  $ heroku login
+  Enter your Heroku credentials.
+  Email: adam@example.com
+  Password:
+  Could not find an existing public key.
+  Would you like to generate one? [Yn]
+  Generating new SSH public key.
+  Uploading ssh public key /Users/adam/.ssh/id_rsa.pub</p>
 
                     
                     </section>
@@ -202,8 +221,10 @@
         </div>
 
         
+        <a href="./new-app.html" class="navigation navigation-prev "><i class="fa fa-angle-left"></i></a>
         
-        <a href="./node-npm.html" class="navigation navigation-next navigation-unique"><i class="fa fa-angle-right"></i></a>
+        
+        <a href="./deploy-app.html" class="navigation navigation-next "><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

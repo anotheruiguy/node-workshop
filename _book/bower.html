@@ -42,7 +42,7 @@
 
 
         
-    <div class="book"  data-level="9" data-basepath="." data-revision="1400287340422">
+    <div class="book"  data-level="9" data-basepath="." data-revision="1400297380939">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -265,9 +265,88 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_1059">
+                    <section class="normal" id="section-gitbook_1268">
                     
                         <h1 id="bower-all-the-things">Bower all the things</h1>
+<p>Unless you live in a hole, you are well aware that the JavaScript revolution is all around us. Many of the amazing concepts I discovered in the Rails ecosystem are now bursting out into the JavaScript space allowing for a greater distribution of awesome. The three pillars are; Yeoman, Bower and Grunt.</p>
+<p>The problem I need to solve is; what is the best way to get some library code up on Github and make it easily accessible to users without having to clone the project? Because, that&#39;s pretty lame, right?</p>
+<h2 id="yeoman-generators">Yeoman generators</h2>
+<p>Initially I came across <a href="https://github.com/srsgores/generator-sass-boilerplate" target="_blank">generator-sass-boilerplate</a>, a &#39;Yeoman generator for quickly scaffolding out Sass styles&#39;. This is a very interesting approach for creating a complex library and allowing the user to customize the install. But for a simpler library of code, maybe just some functions and mixins, this is way to much overhead.</p>
+<h2 id="bower-is-the-answer">Bower is the answer</h2>
+<p>Fast forward to now. I recently came across new posts that really break down what Bower is and what it is best at. And it hit me, this IS the answer!</p>
+<p>For those not in the know, Bower is an extremely simple solution for front-end package management.</p>
+<blockquote>
+<p>It offers a generic, unopinionated solution to the problem of front-end package management, while exposing the package dependency model via an API that can be consumed by a more opinionated build stack.</p>
+</blockquote>
+<p>The beauty of Bower is held within it&#39;s simplicity. Bower has a registry, but it&#39;s not 100% necessary. The common command is <code>bower install &lt;package&gt;</code> where <code>&lt;package&gt;</code> can refer to a <a href="http://bower.io/#using-a-different-name-and-a-specific-version-of-a-package" target="_blank">large number of options</a>, thus making it dirt simple to just share some code. NICE!</p>
+<p>Sticking with the &#39;dirt simple&#39; theme, you can use Bower to easily pull a repo into your project without having to clone it. Even if it doesn&#39;t have a <code>bower.json</code> file.</p>
+<p>For example Stipe, a Compass Extension library I wrote, is not Bower aware at all.</p>
+<pre><code>$ bower install git://github.com/Toadstool-Stipe/stipe.git
+</code></pre><p>Run that command in any folder and you will pull in the entire repo with no Github history. This alone is pretty interesting.</p>
+<h2 id="getting-started-with-bower">Getting started with Bower</h2>
+<p>To get started, it&#39;s simple really. Assuming that Node and npm is installed on your local box, run:</p>
+<pre><code>$ npm install -g bower
+</code></pre><h3 id="install-bower-package">Install Bower package</h3>
+<p>I won&#39;t go into exhaustive detail here, but 99% of the time you simply need to run:</p>
+<pre><code>$ bower install &lt;package&gt;
+</code></pre><p>As stated above, there are alternate install options, but the primary solution is to have a <code>bower.json</code> file in the repo and have it registered with Bower.</p>
+<p>If you have a <code>bower.json</code> file in your project, explained in the next section, you can add the <code>--save</code> flag with the install and this will add the library as a dependency in your project. Sweet.</p>
+<p>When you distribute the project, a user who clones it only has to run <code>$ bower install</code> and it will pull in all the external resources. Nice!</p>
+<h2 id="commit-or-not-to-commit-">Commit or not to commit!?</h2>
+<p>This new system of creating and distributing resources raises an interesting question; do you commit all your bower packages or not? In the Ruby world, Gems are not actually part of the project, but dependencies of the project, and never committed to the project&#39;s version control. In this new JavaScript world, Node and Bower package dependencies are referenced via a manifest, much like the Gemfile in Ruby, but are actually installed into the root of the project directory.</p>
+<p>There is a <a href="http://addyosmani.com/blog/checking-in-front-end-dependencies/" target="_blank">whole discussion</a> on this topic. I look at it this way, when you install  a Bower library, are you leaving this as a dependency or are you making modifications?</p>
+<p>The choice is up to you, the arguments are strong on either side. In a situation where you are actually forking the code you installed, then the answer is pretty clear, it should be committed to the project or you need to fork the dependency.</p>
+<h2 id="generate-new-bower-package">Generate new Bower package</h2>
+<p>Creating a new Bower package is again, really simple.</p>
+<pre><code>$ bower init
+</code></pre><p>In the CLI, this will initiate a series of questions, the answers of which will be plugged into the new <code>.json</code> file it creates. Put as much in as you want, but all you really need is:</p>
+<pre><code>{
+  &quot;name&quot;: &quot;your-project&quot;,
+  &quot;version&quot;: &quot;0.0.1&quot;
+}
+</code></pre><p>And that&#39;s it really. You have just created your first Bower resource library. Now go forth and build! Build out your resources, documentation, etc ... your package is ready to go at any time.</p>
+<p>For easy testing, remember the <code>$ bower install git://github.com/ ...</code> trick? Run this against a new repo and see how it installs.</p>
+<p>Be mindful of this step and what the package contains. In my opinion, I see Bower as a great way to distribute smaller, specific libraries of code. When I pull in your Bower package, do I really want all your documentation, tests, demonstration resources, etc ... As an example, I am going to pick on the Bourbon kids here, run:</p>
+<pre><code>$ bower install bourbon
+</code></pre><p>Running this installer, you will get the whole repo. I don&#39;t want the whole repo, all I really want is what is in the <code>dist/</code> dir. To solve this, another developer forked Bourbon and created a new repo called <a href="https://github.com/hmps/bourbon" target="_blank">bower-bourbon</a>:</p>
+<pre><code>$ bower install bower-bourbon
+</code></pre><p>Running this install you actually only get what is in the <code>dist/</code> dir. But are these forks reliable? Ohh open source, you are a wild one.</p>
+<p><strong>UPDATE:</strong> It&#39;s been brought to my attention that using the Bower install of Bourbon pulls in it&#39;s 3.2 Beta and appears not to be fully functional. This section was not intended to say &quot;bad Bourbon&quot; but to simply illustrate that in some cases, using Bower, you will get more of the library then you really want.</p>
+<h2 id="bower-registration">Bower registration</h2>
+<p>Once you are ready for release, <a href="http://bower.io/#registering-packages" target="_blank">register it with Bower</a>. The criteria is pretty simple:</p>
+<ol>
+<li>Make sure your repo has the <code>bower.json</code> file</li>
+<li>You must use <a href="http://semver.org/" target="_blank">semantic versioning</a></li>
+<li>Your package must be available at a Git endpoint, e.g. Github</li>
+</ol>
+<p>Once you have all of that, run this command with your new package name and the Git endpoint:</p>
+<pre><code>$ bower register &lt;my-package-name&gt; &lt;git-endpoint&gt;
+</code></pre><p>Registration is painless. Once you get the green light on everything, give it a test and do a <code>$ bower install &lt;my-package-name&gt;</code></p>
+<h2 id="bower-and-sass">Bower and Sass</h2>
+<p>Bower and Sass libraries are an amazing pairing. There are small repos all over Github where the complexity of making them a Ruby Gem/Compass Extension was just to much overhead. You are required to either fork, clone, or god forbid, copy and paste code into your project. What? Are we not civilized?</p>
+<p>In the Ruby world, developers are used to having Gems and Compass Extensions installed in a safe, *untouchable location. The new Gem is added to the Gemfile and we simply reference the library in the project.</p>
+<h5 id="-untouchable-is-a-frustration-with-many-developers-importing-sass-libraries-that-they-did-not-have-control-over-or-were-unable-to-modify-that-actually-output-css-can-be-very-frustrating-">*Untouchable is a frustration with many developers. Importing Sass libraries that they did not have control over, or were unable to modify, that actually output CSS can be very frustrating.</h5>
+<p>In the new JavaScipt world, the library is added to the <code>bower.json</code> manifest or simply installed, but instead of it being in a obscured location, it is installed into the root of the project. This keeps things simple from an install perspective, but this means our Sass imports are in relative directories. Not a big deal, but different from what we are used to.</p>
+<p>So, what does a Sass Bower package look like? Let&#39;s take a simple project I created called, <a href="https://github.com/anotheruiguy/sass-icon-fonts" target="_blank">sass-icon-fonts</a>. This package is simply a couple of mixins, one that allows the developer to easily create a <code>@font-face</code> set of rules and another is the ability to quickly generate a series of icon-font rules. The mini library comes with instructions and a very simple API.</p>
+<p>Now, let&#39;s imagine you are building a Node project and you want to use this package as a resource, run:</p>
+<pre><code>$ bower install sass-icon-fonts --save
+</code></pre><p>This installs the package and adds the dependency to your <code>bower.json</code> file. Located at the root level of the project is your <code>sass/</code> directory, within that is your <code>application.scss</code> file. At your root is the <code>bower_components</code> directory. For your <code>application.scss</code> file to access the new library, you will need to import a relative path to the library, as illustrated in the following:</p>
+<pre><code>@import &quot;../bower_components/sass-icon-fonts/_ico-font.scss&quot;;
+</code></pre><p>While the previous example works, while I found this acceptable, I didn&#39;t really find it awesome. Digging more into the Grint-Sass API I discovered the <a href="https://github.com/sindresorhus/grunt-sass#includepaths" target="_blank">includePaths</a> function. This allows you to set an import path to include.</p>
+<pre><code>options: {
+  includePaths: [
+    &#39;./bower_components/bower-bourbon&#39;
+  ]
+}
+</code></pre><p>Now that you have this in your Grunt file, you can simply reference the library&#39;s main manifest file with a simply Sass import, like so:</p>
+<pre><code>@import &quot;bourbon&quot;;
+</code></pre><h2 id="bower-behind-the-firewall">Bower behind the firewall</h2>
+<p>If you find yourself behind a firewall that does not allow for the <code>git://[repo]</code> protocol, there is a fix for this. First, I suggest maually doing a clone using the <code>https://[repo]</code> protocol to make sure that this is really the issue. If the <code>https://[repo]</code> protocol works, then you may want to make the following update:</p>
+<pre><code>git config --global url.&quot;https://&quot;
+</code></pre><p>Thank you <a href="http://stackoverflow.com/questions/15669091/bower-install-using-only-https" target="_blank">Stack Overflow</a>!</p>
+<h2 id="summary">Summary</h2>
+<p>When I say I want to Bower all the things, I mean just that. Now understanding Bower, I am looking at simple package management in a whole new light and I hope that you do to.</p>
+<p>No more forking, cloning, deleting <code>.git/</code> directories just to include a library into a project. I am looking at creating Sass modules in a whole new light as well. Not that Compass extensions were difficult, but Bower frees me of multiple dependencies. Something that has been a real issue on many projects.</p>
 
                     
                     </section>

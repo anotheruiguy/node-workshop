@@ -8,7 +8,7 @@ Make sure you have a Heroku account set up
 
 ### Step 2 - Install Heroku Toolbelt
 
-Download and install the tool belt package specific for your OX
+Download and install the tool belt package specific for your OS
 
 ##### OSX
 
@@ -20,17 +20,23 @@ Download and install the tool belt package specific for your OX
 
 #### Linux
 
-  $ wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
+```
+$ wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
+```
 
 ### Step 3 - Log into you account
 
 Once toolbelt is installed, you should be able to access your account
 
-  $ heroku login
-  Enter your Heroku credentials.
-  Email: adam@example.com
-  Password:
-  Could not find an existing public key.
-  Would you like to generate one? [Yn]
-  Generating new SSH public key.
-  Uploading ssh public key /Users/adam/.ssh/id_rsa.pub
+```
+$ heroku login
+Enter your Heroku credentials.
+Email: adam@example.com
+Password:
+Could not find an existing public key.
+Would you like to generate one? [Yn]
+Generating new SSH public key.
+Uploading ssh public key /Users/adam/.ssh/id_rsa.pub
+```
+
+That's pretty much about it. Pass these steps and you are ready to DEPLOY THE CODES!

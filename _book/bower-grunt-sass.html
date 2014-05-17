@@ -3,7 +3,7 @@
     <head prefix="og: http://ogp.me/ns# book: http://ogp.me/ns/book#">
         
         <meta charset="UTF-8">
-        <title>Node and npm | SSCC: Build a Node.js Project from Scratch</title>
+        <title>Bower + Grunt + Sass | SSCC: Build a Node.js Project from Scratch</title>
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="robots" content="index, follow">
@@ -13,13 +13,13 @@
         <meta name="generator" content="www.gitbook.io">
 
         
-        <link rel="next" href="./express.html" />
+        <link rel="next" href="./heroku.html" />
         
         
-        <link rel="prev" href="./index.html" />
+        <link rel="prev" href="./bower.html" />
         
 
-        <meta property="og:title" content="Node and npm | SSCC: Build a Node.js Project from Scratch">
+        <meta property="og:title" content="Bower + Grunt + Sass | SSCC: Build a Node.js Project from Scratch">
         <meta property="og:site_name" content="SSCC: Build a Node.js Project from Scratch">
         <meta property="og:type" content="book">
         <meta property="og:locale" content="en_US">
@@ -42,7 +42,7 @@
 
 
         
-    <div class="book"  data-level="1" data-basepath="." data-revision="1400297380939">
+    <div class="book"  data-level="10" data-basepath="." data-revision="1400297380939">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -230,7 +230,7 @@
             <div class="page-wrapper" tabindex="-1">
                 <div class="book-progress">
     <div class="bar">
-        <div class="inner" style="width: 8.333333333333334%;min-width: 0%;"></div>
+        <div class="inner" style="width: 16.666666666666668%;min-width: 8.333333333333334%;"></div>
     </div>
     <div class="chapters">
     
@@ -238,7 +238,7 @@
     
         <a href="./node-npm.html" title="Node and npm" class="chapter done new-chapter" data-progress="1" style="left: 8.333333333333334%;"></a>
     
-        <a href="./bower-grunt-sass.html" title="Bower + Grunt + Sass" class="chapter  " data-progress="10" style="left: 16.666666666666668%;"></a>
+        <a href="./bower-grunt-sass.html" title="Bower + Grunt + Sass" class="chapter done " data-progress="10" style="left: 16.666666666666668%;"></a>
     
         <a href="./heroku.html" title="Heroku" class="chapter  " data-progress="11" style="left: 25%;"></a>
     
@@ -265,100 +265,55 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_1274">
+                    <section class="normal" id="section-gitbook_1266">
                     
-                        <h1 id="introduction-to-node">Introduction to Node</h1>
-<p>There is more then enough documentation out there that supports the question, &quot;Why Node?&quot;. Something that really rings true with me is not where Node is today, but where Node is going. Without a doubt, the Rails community has brought a lot to the table, but what made all those awesome ideas hard to swallow was the fact that they were locked inside Ruby. As amazing as Ruby is, not everyone wants to be a Ruby developer.</p>
-<p>I particularly like this quote from <em>Why The Hell Would I Use Node.js? A Case-by-Case Introduction</em> [<a href="http://www.toptal.com/nodejs/why-the-hell-would-i-use-node-js" target="_blank">reference</a>] by <a href="http://www.toptal.com/resume/tomislav-capan" target="_blank">Tomislav Capan</a></p>
-<blockquote>
-<p>... it’s worth noting that Ryan Dahl, the creator of Node.js, was aiming to create real-time websites with push capability, “inspired by applications like Gmail”. In Node.js, he gave developers a tool for working in the non-blocking, event-driven I/O paradigm.</p>
-</blockquote>
-<h2 id="install-node">Install Node</h2>
-<p>Before you run any installers, make sure you know what is on your computer. To see the version, simply run:</p>
-<pre><code>node --version
-</code></pre><p>Of course to create and run a Node app, you need to have Node installed. To install Node, you can run the <a href="http://nodejs.org/" target="_blank">installer from their site</a>.</p>
-<p><a href="http://www.joyent.com/blog/installing-node-and-npm/" target="_blank">Installing Node and npm</a> is a great article on all the ways to get this set up. Pay attention to Step 4 where there are some pretty solid opinions on how to set things up.</p>
-<p>A <a href="https://gist.github.com/579814" target="_blank">gist</a> is made available that illustrates a series of ways to install node.</p>
-<p>The article does state a personal opinion against using Homebrew. Brew has worked for me rather well, but this is an opinion you may need formulate on your own.</p>
-<h2 id="node-package-manager-npm-">Node Package Manager (npm)</h2>
-<blockquote>
-<p>npm is a NodeJS package manager. As its name would imply, you can use it to install node programs. Also, if you use it in development, it makes it easier to specify and link dependencies.</p>
-</blockquote>
-<p><a href="http://howtonode.org/introduction-to-npm" target="_blank">Learn more</a> about npm</p>
-<p>Depending on your install process you may or may not have NPM installed. To check, simply run:</p>
-<pre><code>npm --version
-</code></pre><h4 id="if-you-do-not-have-npm-installed-run-the-following-">If you do not have npm installed, run the following:</h4>
-<p>Note: npm is the package manager for Node, so you can&#39;t use the package manager to install the package manager o_O</p>
-<pre><code>curl http://npmjs.org/install.sh | sh
-</code></pre><h2 id="using-npm">Using npm</h2>
-<p>Now that you have npm installed, all registered packages are a simple command away. For a basic package install, run:</p>
-<pre><code>npm install &lt;package&gt;
-</code></pre><p>This install method will install the package in a directory (<code>node_modules/</code>) relative to your project. At times you will need to install libraries globally so that you can access their code from any application that doesn&#39;t necessarily require them as a dependency.</p>
-<p>To do this, you need to add the <code>-g</code> flag n the install process:</p>
-<pre><code>npm install -g &lt;package&gt;
-</code></pre><p><strong>Note:</strong> Depending on how Node is installed on your system, you may not have access to install a global package. To get around this, simply add the <code>sudo</code> command before the npm install method:</p>
-<pre><code>sudo npm install -g &lt;package&gt;
-</code></pre><h3 id="using-npm-with-a-project">Using npm with a project</h3>
-<p>The most common use case for npm is to maintain a manifest of dependencies for your project. This is maintained with a <a href="https://www.npmjs.org/doc/json.html" target="_blank">package.json</a> file.</p>
-<p>You can either crate this file yourself, or there are ways to generate this file too. In any directory simply run <code>npm init</code> and the CLI will walk you through a series of questions and out put something like the following:</p>
-<pre><code>{
-  &quot;name&quot;: &quot;toss-this&quot;,
-  &quot;version&quot;: &quot;0.0.0&quot;,
-  &quot;description&quot;: &quot;&quot;,
-  &quot;main&quot;: &quot;index.js&quot;,
-  &quot;scripts&quot;: {
-    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;
-  },
-  &quot;author&quot;: &quot;&quot;,
-  &quot;license&quot;: &quot;ISC&quot;
-}
-</code></pre><p>Once you have this in your project adding to it using <code>npm install</code> is very easy. Simply add the <code>--save</code> flag to the command like the following:</p>
-<pre><code>npm install &lt;package&gt; --save
-</code></pre><p>Adding Grunt to the project would update the <code>package.json</code>  by adding a <code>dependencies</code> object in the json file:</p>
-<pre><code>{
-  &quot;name&quot;: &quot;toss-this&quot;,
-  &quot;version&quot;: &quot;0.0.0&quot;,
-  &quot;description&quot;: &quot;&quot;,
-  &quot;main&quot;: &quot;index.js&quot;,
-  &quot;scripts&quot;: {
-    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;
-  },
-  &quot;author&quot;: &quot;&quot;,
-  &quot;license&quot;: &quot;ISC&quot;,
-  &quot;dependencies&quot;: {
-    &quot;grunt&quot;: &quot;^0.4.5&quot;
-  }
-}
-</code></pre><p>Adding to this, if you wanted to add a dependency that is only for development versus production, you pass in the <code>-dev</code> flag:</p>
-<pre><code>npm install &lt;package&gt; --save-dev
-</code></pre><p>Adding Gulp as a development dependency we get the following update to the <code>package.json</code> file by adding a <code>devDependencies</code> object:</p>
-<pre><code>{
-  &quot;name&quot;: &quot;toss-this&quot;,
-  &quot;version&quot;: &quot;0.0.0&quot;,
-  &quot;description&quot;: &quot;&quot;,
-  &quot;main&quot;: &quot;index.js&quot;,
-  &quot;scripts&quot;: {
-    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;
-  },
-  &quot;author&quot;: &quot;&quot;,
-  &quot;license&quot;: &quot;ISC&quot;,
-  &quot;dependencies&quot;: {
-    &quot;grunt&quot;: &quot;^0.4.5&quot;
-  },
-  &quot;devDependencies&quot;: {
-    &quot;gulp&quot;: &quot;^3.6.2&quot;
-  }
-}
-</code></pre><h2 id="maintaining-dependencies">Maintaining dependencies</h2>
-<p>Unlike other package managers, npm installs these libraries directly into the root of your project. Without extra steps, these libraries will easily get committed to your version control.</p>
-<p>For the most part you probably don&#39;t want to do this. Versioning is maintained via the <code>package.json</code> file and you shouldn&#39;t ever really go into the packages themselves and edit the code.</p>
-<h3 id="using-gitignore">Using .gitignore</h3>
-<p>To keep npm libraries out of your version control, add the following to your .gitignore file.</p>
-<pre><code>node_modules
-</code></pre><h3 id="getting-the-dependencies">Getting the dependencies</h3>
-<p>The <code>package.json</code> file is maintaining your app&#39;s dependencies and you are not committing your dependencies to your Git repo, those who clone your project need to get these install these dependencies. Installing is very simple:</p>
-<pre><code>npm install
-</code></pre><p>After executing that command you should see your CLI downloading the internet!</p>
+                        <h1 id="bower-grunt-sass">Bower - Grunt - Sass</h1>
+<p>Now that we know the powers of Bower to easily manage our front-end development dependencies, what do we need to do to add a Bower package of Sass code to our project?</p>
+<h2 id="bower-install">Bower install</h2>
+<p>First off, let&#39;s install a simple Bower package for illustration:</p>
+<pre><code>$ bower install css-calc-mixin --save
+</code></pre><p>There, we now have the library of code in our project.</p>
+<h2 id="update-gruntfile-js">Update Gruntfile.js</h2>
+<p>Next we want to update the <code>Gruntfile.js</code> so that we can easily include the library into our Sass files. Without this step, we would need to write fill paths in our Sass file to this and that&#39;s simply lame.</p>
+<p>In the Grunt-Sass API we have options and the one we need to use is <code>includePaths</code>. Here we can pass in a string that is the full path from root to the Bower package into an array.</p>
+<pre><code class="lang-javascript">module.exports = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(grunt)</span> {</span>
+  grunt.initConfig({
+    sass: {
+      dist: {
+        files: {
+          <span class="hljs-string">'public/stylesheets/style.css'</span>: <span class="hljs-string">'sass/style.scss'</span>
+        }
+      },
+      options: {
+        includePaths: [
+          <span class="hljs-string">'./bower_components/css-calc-mixin'</span>
+        ]
+      }
+    },
+    watch: {
+      source: {
+        files: [<span class="hljs-string">'sass/**/*.scss'</span>, <span class="hljs-string">'views/**/*.jade'</span>],
+        tasks: [<span class="hljs-string">'sass'</span>],
+        options: {
+          livereload: <span class="hljs-literal">true</span>, <span class="hljs-comment">// needed to run LiveReload</span>
+        }
+      }
+    }
+  });
+
+  grunt.loadNpmTasks(<span class="hljs-string">'grunt-contrib-watch'</span>);
+  grunt.loadNpmTasks(<span class="hljs-string">'grunt-sass'</span>);
+  grunt.registerTask(<span class="hljs-string">'default'</span>, [<span class="hljs-string">'sass'</span>]);
+};
+</code></pre>
+<h2 id="update-style-scss">Update style.scss</h2>
+<p>To make use of this new Bower package library, we simply need to use a Sass convention to import the code.</p>
+<pre><code class="lang-sass">@import &quot;css-calc-mixin&quot;;
+</code></pre>
+<p>To test that this is working, let&#39;s add a little bit of code that references the Bower library.</p>
+<pre><code class="lang-sass">add some code here
+</code></pre>
+<p>Back in the CLI, run <code>grunt</code> and we should see green lights all day long!</p>
 
                     
                     </section>
@@ -368,10 +323,10 @@
         </div>
 
         
-        <a href="./index.html" class="navigation navigation-prev "><i class="fa fa-angle-left"></i></a>
+        <a href="./bower.html" class="navigation navigation-prev "><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="./express.html" class="navigation navigation-next "><i class="fa fa-angle-right"></i></a>
+        <a href="./heroku.html" class="navigation navigation-next "><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

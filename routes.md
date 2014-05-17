@@ -11,14 +11,6 @@ The following snippet illustrates the most simple route definition possible. Exp
 app.VERB(path, [callback...], callback)
 ```
 
-Basic example using this syntax that will send a string of text to the browser is:
-
-```javascript
-app.get('/', function(req, res){
-  res.send('hello world');
-});
-```
-
 Lets get into setting up some routes. In the `app.js` file the following line is how this comes together:
 
 ```javascript
@@ -36,14 +28,18 @@ app.use('/', routes);
 Another thing we can do is `res.send()` and what ever we put in there will get sent directly to the browser. For example:
 
 ```javascript
-res.send('hello world')
+router.get('/foo', function(req, res){
+  res.send('hello world');
+});
 ```
 
 Using the `res.send()` we can do fun things like even send in JSON objects.
 
 ```javascript
-res.send({'name':'Bob Goldcat', 'age': '41'})
-``
+router.get('/foo', function(req, res){
+  res.send({'name':'Bob Goldcat', 'age': '41'})
+});
+```
 
 This method allows us to then keep all our routes in the `index.js` file if needed. There are better ways to address a more complicated routing solution, but for the scope of this workshop, this is great.
 

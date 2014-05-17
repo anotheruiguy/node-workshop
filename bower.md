@@ -66,12 +66,12 @@ Creating a new Bower package is again, really simple.
 $ bower init
 ```
 
-In the CLI, this will initiate a series of questions, the answers of which will be plugged into the new `.json` file it creates. Put as much in as you want, but all you really need is:
+In the CLI, this will initiate a series of questions, the answers of which will be plugged into the new `bower.json` file it creates. Put as much in as you want, but all you really need is:
 
 ```
 {
   "name": "your-project",
-  "version": "0.0.1"
+  "version": "0.1.0"
 }
 ```
 

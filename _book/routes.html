@@ -42,7 +42,7 @@
 
 
         
-    <div class="book"  data-level="4" data-basepath="." data-revision="1400298585120">
+    <div class="book"  data-level="4" data-basepath="." data-revision="1400301734802">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -265,18 +265,13 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_1353">
+                    <section class="normal" id="section-gitbook_1418">
                     
                         <h1 id="fun-with-routes">Fun with Routes</h1>
 <p>The <code>app.VERB()</code> methods provide the routing functionality in Express, where <strong>VERB</strong> is one of the HTTP verbs, such as <code>app.post()</code>. Multiple callbacks may be given, all are treated equally, and behave just like middleware, with the one exception that these callbacks may invoke <code>next(&#39;route&#39;)</code> to bypass the remaining route callback(s). This mechanism can be used to perform pre-conditions on a route then pass control to subsequent routes when there is no reason to proceed with the route matched.</p>
 <p>The following snippet illustrates the most simple route definition possible. Express translates the path strings to regular expressions, used internally to match incoming requests. Query strings are <strong>not</strong> considered when peforming these matches, for example <code>GET /</code> would match the following route, as would <code>GET /?name=tobi</code>.</p>
 <p><a href="http://expressjs.com/4x/api.html#app.VERB" target="_blank">source</a></p>
 <pre><code class="lang-javascript">app.VERB(path, [callback...], callback)
-</code></pre>
-<p>Basic example using this syntax that will send a string of text to the browser is:</p>
-<pre><code class="lang-javascript">app.get(<span class="hljs-string">'/'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(req, res)</span>{</span>
-  res.send(<span class="hljs-string">'hello world'</span>);
-});
 </code></pre>
 <p>Lets get into setting up some routes. In the <code>app.js</code> file the following line is how this comes together:</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">var</span> routes = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./routes/index'</span>);
@@ -286,25 +281,24 @@
 <pre><code class="lang-javascript">app.use(<span class="hljs-string">'/'</span>, routes);
 </code></pre>
 <p>Another thing we can do is <code>res.send()</code> and what ever we put in there will get sent directly to the browser. For example:</p>
-<pre><code class="lang-javascript">res.send(<span class="hljs-string">'hello world'</span>)
+<pre><code class="lang-javascript">router.get(<span class="hljs-string">'/foo'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(req, res)</span>{</span>
+  res.send(<span class="hljs-string">'hello world'</span>);
+});
 </code></pre>
 <p>Using the <code>res.send()</code> we can do fun things like even send in JSON objects.</p>
-<pre><code class="lang-javascript">res.send({&#39;name&#39;:&#39;Bob Goldcat&#39;, &#39;age&#39;: &#39;41&#39;})
-``
+<pre><code class="lang-javascript">router.get(<span class="hljs-string">'/foo'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(req, res)</span>{</span>
+  res.send({<span class="hljs-string">'name'</span>:<span class="hljs-string">'Bob Goldcat'</span>, <span class="hljs-string">'age'</span>: <span class="hljs-string">'41'</span>})
+});
+</code></pre>
+<p>This method allows us to then keep all our routes in the <code>index.js</code> file if needed. There are better ways to address a more complicated routing solution, but for the scope of this workshop, this is great.</p>
+<h2 id="what-s-in-the-index-js-file-">What&#39;s in the index.js file?</h2>
+<p>Looking at our <code>index.js</code> file you should see the following:</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>);
+<span class="hljs-keyword">var</span> router = express.Router();
 
-This method allows us to then keep all our routes in the `index.js` file if needed. There are better ways to address a more complicated routing solution, but for the scope of this workshop, this is great.
-
-## What&#39;s in the index.js file?
-
-Looking at our `index.js` file you should see the following:
-
-```javascript
-var express = require(&#39;express&#39;);
-var router = express.Router();
-
-/* GET home page. */
-router.get(&#39;/&#39;, function(req, res) {
-  res.render(&#39;index&#39;, { title: &#39;Express&#39; });
+<span class="hljs-comment">/* GET home page. */</span>
+router.get(<span class="hljs-string">'/'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(req, res)</span> {</span>
+  res.render(<span class="hljs-string">'index'</span>, { title: <span class="hljs-string">'Express'</span> });
 });
 
 module.exports = router;

@@ -61,7 +61,21 @@ To make use of this new Bower package library, we simply need to use a Sass conv
 To test that this is working, let's add a little bit of code that references the Bower library.
 
 ```sass
-add some code here
+.block {
+  @include calc(width, 220px);
+}
+
+.block {
+  @include calc(margin, 220px, 0);
+}
+
+.block {
+  @include calc(width, 220px, true, 0);
+}
+
+.block {
+  @include calc(width, 220px, true, 0, 50%, '+');
+}
 ```
 
 Back in the CLI, run `grunt` and we should see green lights all day long!

@@ -41,3 +41,27 @@ module.exports = function(grunt) {
 ```
 
 And there we have it. Grunt is installed, we have a functional `Gruntfile.js` and we can start writing some Sass too.
+
+## Add Livereload to layout.jade
+
+In order to get Live reload to fire in the project we need to add a reference to a non-existent JavaScript file in the `layout.jade` file as the last thing in the `<body>` tag.
+
+```jade
+script(src='http://localhost:35729/livereload.js')
+```
+
+In a new Express project, it would look like this:
+
+```jade
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    block content
+
+    script(src='http://localhost:35729/livereload.js')
+```
+
+After this is added, go back and REFRESH the browser and then any edit in either Sass or Jade should fire the Livereload.

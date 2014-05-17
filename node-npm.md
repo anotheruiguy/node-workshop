@@ -12,7 +12,7 @@ I particularly like this quote from _Why The Hell Would I Use Node.js? A Case-by
 Before you run any installers, make sure you know what is on your computer. To see the version, simply run:
 
 ```
-node --version
+$ node --version
 ```
 
 Of course to create and run a Node app, you need to have Node installed. To install Node, you can run the [installer from their site](http://nodejs.org/).
@@ -33,7 +33,7 @@ The article does state a personal opinion against using Homebrew. Brew has worke
 Depending on your install process you may or may not have NPM installed. To check, simply run:
 
 ```
-npm --version
+$ npm --version
 ```
 
 #### If you do not have npm installed, run the following:
@@ -41,7 +41,7 @@ npm --version
 Note: npm is the package manager for Node, so you can't use the package manager to install the package manager o_O
 
 ```
-curl http://npmjs.org/install.sh | sh
+$ curl http://npmjs.org/install.sh | sh
 ```
 
 ## Using npm
@@ -49,7 +49,7 @@ curl http://npmjs.org/install.sh | sh
 Now that you have npm installed, all registered packages are a simple command away. For a basic package install, run:
 
 ```
-npm install <package>
+$ npm install <package>
 ```
 
 This install method will install the package in a directory (`node_modules/`) relative to your project. At times you will need to install libraries globally so that you can access their code from any application that doesn't necessarily require them as a dependency.
@@ -57,13 +57,13 @@ This install method will install the package in a directory (`node_modules/`) re
 To do this, you need to add the `-g` flag n the install process:
 
 ```
-npm install -g <package>
+$ npm install -g <package>
 ```
 
 **Note:** Depending on how Node is installed on your system, you may not have access to install a global package. To get around this, simply add the `sudo` command before the npm install method:
 
 ```
-sudo npm install -g <package>
+$ sudo npm install -g <package>
 ```
 
 ### Using npm with a project
@@ -89,7 +89,7 @@ You can either crate this file yourself, or there are ways to generate this file
 Once you have this in your project adding to it using `npm install` is very easy. Simply add the `--save` flag to the command like the following:
 
 ```
-npm install <package> --save
+$ npm install <package> --save
 ```
 
 Adding Grunt to the project would update the `package.json`  by adding a `dependencies` object in the json file:
@@ -114,7 +114,7 @@ Adding Grunt to the project would update the `package.json`  by adding a `depend
 Adding to this, if you wanted to add a dependency that is only for development versus production, you pass in the `-dev` flag:
 
 ```
-npm install <package> --save-dev
+$ npm install <package> --save-dev
 ```
 
 Adding Gulp as a development dependency we get the following update to the `package.json` file by adding a `devDependencies` object:
@@ -158,7 +158,7 @@ node_modules
 The `package.json` file is maintaining your app's dependencies and you are not committing your dependencies to your Git repo, those who clone your project need to get these install these dependencies. Installing is very simple:
 
 ```
-npm install
+$ npm install
 ```
 
 After executing that command you should see your CLI downloading the internet!

@@ -4,9 +4,9 @@
 
 > Express is a minimal and flexible node.js web application framework, providing a robust set of features for building single and multi-page, and hybrid web applications.
 
-It has a wealth of [APIs](http://expressjs.com/4x/api.html) and is FAS AS HELL!!
+It has a wealth of [APIs](http://expressjs.com/4x/api.html) and is FAST AS HELL!!
 
-Express is well known for NOT following offer Rails as far as frameworks go, but more so it takes after another Ruby framework called [Sinatra](http://www.sinatrarb.com/). The concept is simple, the framework gives you enough to get things up and running as fast as possible and all without getting in your way.
+Express is well known for NOT following after Rails as far as frameworks go, but more so it takes after another Ruby framework called [Sinatra](http://www.sinatrarb.com/). The concept is simple, the framework gives you enough to get things up and running as fast as possible and all without getting in your way.
 
 For the most part, Express continues to live up to this statement.
 

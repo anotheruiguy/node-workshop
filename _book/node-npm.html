@@ -42,7 +42,7 @@
 
 
         
-    <div class="book"  data-level="1" data-basepath="." data-revision="1400263160797">
+    <div class="book"  data-level="1" data-basepath="." data-revision="1400285000537">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -134,19 +134,64 @@
                 
             </li>
         
-            <li  data-level="4" data-path="heroku.html">
+            <li  data-level="4" data-path="routes.html">
                 
-                <a href="./heroku.html">
-                    <i class="fa fa-check"></i> <b>4.</b> Heroku
+                <a href="./routes.html">
+                    <i class="fa fa-check"></i> <b>4.</b> Routes
                 </a>
                 
                 
             </li>
         
-            <li  data-level="5" data-path="deploy-app.html">
+            <li  data-level="5" data-path="404.html">
+                
+                <a href="./404.html">
+                    <i class="fa fa-check"></i> <b>5.</b> 404 errors
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="6" data-path="grunt.html">
+                
+                <a href="./grunt.html">
+                    <i class="fa fa-check"></i> <b>6.</b> Grunt
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="7" data-path="sass.html">
+                
+                <a href="./sass.html">
+                    <i class="fa fa-check"></i> <b>7.</b> Sass
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="8" data-path="bower.html">
+                
+                <a href="./bower.html">
+                    <i class="fa fa-check"></i> <b>8.</b> Bower
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="9" data-path="heroku.html">
+                
+                <a href="./heroku.html">
+                    <i class="fa fa-check"></i> <b>9.</b> Heroku
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="10" data-path="deploy-app.html">
                 
                 <a href="./deploy-app.html">
-                    <i class="fa fa-check"></i> <b>5.</b> Deploy the codes
+                    <i class="fa fa-check"></i> <b>10.</b> Deploy the codes
                 </a>
                 
                 
@@ -167,28 +212,38 @@
             <div class="page-wrapper" tabindex="-1">
                 <div class="book-progress">
     <div class="bar">
-        <div class="inner" style="width: 20%;min-width: 0%;"></div>
+        <div class="inner" style="width: 10%;min-width: 0%;"></div>
     </div>
     <div class="chapters">
     
         <a href="./index.html" title="Introduction" class="chapter done new-chapter" data-progress="0" style="left: 0%;"></a>
     
-        <a href="./node-npm.html" title="Node and npm" class="chapter done new-chapter" data-progress="1" style="left: 20%;"></a>
+        <a href="./node-npm.html" title="Node and npm" class="chapter done new-chapter" data-progress="1" style="left: 10%;"></a>
     
-        <a href="./express.html" title="Express" class="chapter  new-chapter" data-progress="2" style="left: 40%;"></a>
+        <a href="./deploy-app.html" title="Deploy the codes" class="chapter  " data-progress="10" style="left: 20%;"></a>
     
-        <a href="./new-app.html" title="Create a new app" class="chapter  new-chapter" data-progress="3" style="left: 60%;"></a>
+        <a href="./express.html" title="Express" class="chapter  new-chapter" data-progress="2" style="left: 30%;"></a>
     
-        <a href="./heroku.html" title="Heroku" class="chapter  new-chapter" data-progress="4" style="left: 80%;"></a>
+        <a href="./new-app.html" title="Create a new app" class="chapter  new-chapter" data-progress="3" style="left: 40%;"></a>
     
-        <a href="./deploy-app.html" title="Deploy the codes" class="chapter  new-chapter" data-progress="5" style="left: 100%;"></a>
+        <a href="./routes.html" title="Routes" class="chapter  new-chapter" data-progress="4" style="left: 50%;"></a>
+    
+        <a href="./404.html" title="404 errors" class="chapter  new-chapter" data-progress="5" style="left: 60%;"></a>
+    
+        <a href="./grunt.html" title="Grunt" class="chapter  new-chapter" data-progress="6" style="left: 70%;"></a>
+    
+        <a href="./sass.html" title="Sass" class="chapter  new-chapter" data-progress="7" style="left: 80%;"></a>
+    
+        <a href="./bower.html" title="Bower" class="chapter  new-chapter" data-progress="8" style="left: 90%;"></a>
+    
+        <a href="./heroku.html" title="Heroku" class="chapter  new-chapter" data-progress="9" style="left: 100%;"></a>
     
     </div>
 </div>
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_316">
+                    <section class="normal" id="section-gitbook_917">
                     
                         <h1 id="introduction-to-node">Introduction to Node</h1>
 <p>There is more then enough documentation out there that supports the question, &quot;Why Node?&quot;. Something that really rings true with me is not where Node is today, but where Node is going. Without a doubt, the Rails community has brought a lot to the table, but what made all those awesome ideas hard to swallow was the fact that they were locked inside Ruby. As amazing as Ruby is, not everyone wants to be a Ruby developer.</p>
@@ -219,6 +274,8 @@
 </code></pre><p>This install method will install the package in a directory (<code>node_modules/</code>) relative to your project. At times you will need to install libraries globally so that you can access their code from any application that doesn&#39;t necessarily require them as a dependency.</p>
 <p>To do this, you need to add the <code>-g</code> flag n the install process:</p>
 <pre><code>npm install -g &lt;package&gt;
+</code></pre><p><strong>Note:</strong> Depending on how Node is installed on your system, you may not have access to install a global package. To get around this, simply add the <code>sudo</code> command before the npm install method:</p>
+<pre><code>sudo npm install -g &lt;package&gt;
 </code></pre><h3 id="using-npm-with-a-project">Using npm with a project</h3>
 <p>The most common use case for npm is to maintain a manifest of dependencies for your project. This is maintained with a <a href="https://www.npmjs.org/doc/json.html" target="_blank">package.json</a> file.</p>
 <p>You can either crate this file yourself, or there are ways to generate this file too. In any directory simply run <code>npm init</code> and the CLI will walk you through a series of questions and out put something like the following:</p>
@@ -270,7 +327,17 @@
     &quot;gulp&quot;: &quot;^3.6.2&quot;
   }
 }
-</code></pre>
+</code></pre><h2 id="maintaining-dependencies">Maintaining dependencies</h2>
+<p>Unlike other package managers, npm installs these libraries directly into the root of your project. Without extra steps, these libraries will easily get committed to your version control.</p>
+<p>For the most part you probably don&#39;t want to do this. Versioning is maintained via the <code>package.json</code> file and you shouldn&#39;t ever really go into the packages themselves and edit the code.</p>
+<h3 id="using-gitignore">Using .gitignore</h3>
+<p>To keep npm libraries out of your version control, add the following to your .gitignore file.</p>
+<pre><code>node_modules
+</code></pre><h3 id="getting-the-dependencies">Getting the dependencies</h3>
+<p>The <code>package.json</code> file is maintaining your app&#39;s dependencies and you are not committing your dependencies to your Git repo, those who clone your project need to get these install these dependencies. Installing is very simple:</p>
+<pre><code>npm install
+</code></pre><p>After executing that command you should see your CLI downloading the internet!</p>
+
                     
                     </section>
                 

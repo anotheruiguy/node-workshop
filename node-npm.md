@@ -60,6 +60,12 @@ To do this, you need to add the `-g` flag n the install process:
 npm install -g <package>
 ```
 
+**Note:** Depending on how Node is installed on your system, you may not have access to install a global package. To get around this, simply add the `sudo` command before the npm install method:
+
+```
+sudo npm install -g <package>
+```
+
 ### Using npm with a project
 
 The most common use case for npm is to maintain a manifest of dependencies for your project. This is maintained with a [package.json](https://www.npmjs.org/doc/json.html) file.
@@ -132,3 +138,27 @@ Adding Gulp as a development dependency we get the following update to the `pack
   }
 }
 ```
+
+## Maintaining dependencies
+
+Unlike other package managers, npm installs these libraries directly into the root of your project. Without extra steps, these libraries will easily get committed to your version control.
+
+For the most part you probably don't want to do this. Versioning is maintained via the `package.json` file and you shouldn't ever really go into the packages themselves and edit the code.
+
+### Using .gitignore
+
+To keep npm libraries out of your version control, add the following to your .gitignore file.
+
+```
+node_modules
+```
+
+### Getting the dependencies
+
+The `package.json` file is maintaining your app's dependencies and you are not committing your dependencies to your Git repo, those who clone your project need to get these install these dependencies. Installing is very simple:
+
+```
+npm install
+```
+
+After executing that command you should see your CLI downloading the internet!

@@ -3,7 +3,7 @@
     <head prefix="og: http://ogp.me/ns# book: http://ogp.me/ns/book#">
         
         <meta charset="UTF-8">
-        <title>Express | SSCC: Build a Node.js Project from Scratch</title>
+        <title>404 errors | SSCC: Build a Node.js Project from Scratch</title>
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="robots" content="index, follow">
@@ -13,13 +13,13 @@
         <meta name="generator" content="www.gitbook.io">
 
         
-        <link rel="next" href="./new-app.html" />
+        <link rel="next" href="./grunt.html" />
         
         
-        <link rel="prev" href="./node-npm.html" />
+        <link rel="prev" href="./routes.html" />
         
 
-        <meta property="og:title" content="Express | SSCC: Build a Node.js Project from Scratch">
+        <meta property="og:title" content="404 errors | SSCC: Build a Node.js Project from Scratch">
         <meta property="og:site_name" content="SSCC: Build a Node.js Project from Scratch">
         <meta property="og:type" content="book">
         <meta property="og:locale" content="en_US">
@@ -42,7 +42,7 @@
 
 
         
-    <div class="book"  data-level="2" data-basepath="." data-revision="1400285000537">
+    <div class="book"  data-level="5" data-basepath="." data-revision="1400285000537">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -212,7 +212,7 @@
             <div class="page-wrapper" tabindex="-1">
                 <div class="book-progress">
     <div class="bar">
-        <div class="inner" style="width: 30%;min-width: 20%;"></div>
+        <div class="inner" style="width: 60%;min-width: 50%;"></div>
     </div>
     <div class="chapters">
     
@@ -224,11 +224,11 @@
     
         <a href="./express.html" title="Express" class="chapter done new-chapter" data-progress="2" style="left: 30%;"></a>
     
-        <a href="./new-app.html" title="Create a new app" class="chapter  new-chapter" data-progress="3" style="left: 40%;"></a>
+        <a href="./new-app.html" title="Create a new app" class="chapter done new-chapter" data-progress="3" style="left: 40%;"></a>
     
-        <a href="./routes.html" title="Routes" class="chapter  new-chapter" data-progress="4" style="left: 50%;"></a>
+        <a href="./routes.html" title="Routes" class="chapter done new-chapter" data-progress="4" style="left: 50%;"></a>
     
-        <a href="./404.html" title="404 errors" class="chapter  new-chapter" data-progress="5" style="left: 60%;"></a>
+        <a href="./404.html" title="404 errors" class="chapter done new-chapter" data-progress="5" style="left: 60%;"></a>
     
         <a href="./grunt.html" title="Grunt" class="chapter  new-chapter" data-progress="6" style="left: 70%;"></a>
     
@@ -243,27 +243,27 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_914">
+                    <section class="normal" id="section-gitbook_913">
                     
-                        <h1 id="express-the-node-framework">Express, the Node framework</h1>
-<p><a href="http://expressjs.com/" target="_blank">Expressjs</a> is the web application framework for Node.js apps.</p>
-<blockquote>
-<p>Express is a minimal and flexible node.js web application framework, providing a robust set of features for building single and multi-page, and hybrid web applications.</p>
-</blockquote>
-<p>It has a wealth of <a href="http://expressjs.com/4x/api.html" target="_blank">APIs</a> and is FAS AS HELL!!</p>
-<p>Express is well known for NOT following offer Rails as far as frameworks go, but more so it takes after another Ruby framework called <a href="http://www.sinatrarb.com/" target="_blank">Sinatra</a>. The concept is simple, the framework gives you enough to get things up and running as fast as possible and all without getting in your way.</p>
-<p>For the most part, Express continues to live up to this statement.</p>
-<p>For this workshop, we will be using Express as the core tool for getting a web app up and running with a server, route support, error pages, loggers, etc ...</p>
-<h2 id="install-express">Install Express</h2>
-<p>Installing Express with npm is really easy. Keep in mind that there are two parts to Express, the library that runs it and an awesome generator.</p>
-<p>To install Express:</p>
-<pre><code>$ npm install express -g
-</code></pre><p>To install the generator:</p>
-<pre><code>$ npm install express-generator -g
-</code></pre><h2 id="generator-version">Generator version</h2>
-<p>Express 4.0 was recently released and there are some who are not jiggy with that. So, npm has a way of specifying the version of generator you install.</p>
-<pre><code>$ npm install -g express-generator@3
+                        <h1 id="404-errors-">404 errors?</h1>
+<p>Errors are already addressed in Express for you. In the <code>app.js</code> file, there is the following:</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">/// catch 404 and forwarding to error handler</span>
+app.use(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(req, res, next)</span> {</span>
+    <span class="hljs-keyword">var</span> err = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Not Found'</span>);
+    err.status = <span class="hljs-number">404</span>;
+    next(err);
+});
 </code></pre>
+<p>Then in the <code>views/</code> dir, there is <code>errors.jade</code>.</p>
+<pre><code class="lang-jade">extends layout
+
+block content
+  h1= message
+  h2= error.status
+  pre #{error.stack}
+</code></pre>
+<p>Simple. If you want to customize your 404 page, simply edit this view.</p>
+
                     
                     </section>
                 
@@ -272,10 +272,10 @@
         </div>
 
         
-        <a href="./node-npm.html" class="navigation navigation-prev "><i class="fa fa-angle-left"></i></a>
+        <a href="./routes.html" class="navigation navigation-prev "><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="./new-app.html" class="navigation navigation-next "><i class="fa fa-angle-right"></i></a>
+        <a href="./grunt.html" class="navigation navigation-next "><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

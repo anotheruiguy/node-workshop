@@ -3,7 +3,7 @@
     <head prefix="og: http://ogp.me/ns# book: http://ogp.me/ns/book#">
         
         <meta charset="UTF-8">
-        <title>Express | SSCC: Build a Node.js Project from Scratch</title>
+        <title>Routes | SSCC: Build a Node.js Project from Scratch</title>
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="robots" content="index, follow">
@@ -13,13 +13,13 @@
         <meta name="generator" content="www.gitbook.io">
 
         
-        <link rel="next" href="./new-app.html" />
+        <link rel="next" href="./404.html" />
         
         
-        <link rel="prev" href="./node-npm.html" />
+        <link rel="prev" href="./new-app.html" />
         
 
-        <meta property="og:title" content="Express | SSCC: Build a Node.js Project from Scratch">
+        <meta property="og:title" content="Routes | SSCC: Build a Node.js Project from Scratch">
         <meta property="og:site_name" content="SSCC: Build a Node.js Project from Scratch">
         <meta property="og:type" content="book">
         <meta property="og:locale" content="en_US">
@@ -42,7 +42,7 @@
 
 
         
-    <div class="book"  data-level="2" data-basepath="." data-revision="1400285000537">
+    <div class="book"  data-level="4" data-basepath="." data-revision="1400285000537">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -212,7 +212,7 @@
             <div class="page-wrapper" tabindex="-1">
                 <div class="book-progress">
     <div class="bar">
-        <div class="inner" style="width: 30%;min-width: 20%;"></div>
+        <div class="inner" style="width: 50%;min-width: 40%;"></div>
     </div>
     <div class="chapters">
     
@@ -224,9 +224,9 @@
     
         <a href="./express.html" title="Express" class="chapter done new-chapter" data-progress="2" style="left: 30%;"></a>
     
-        <a href="./new-app.html" title="Create a new app" class="chapter  new-chapter" data-progress="3" style="left: 40%;"></a>
+        <a href="./new-app.html" title="Create a new app" class="chapter done new-chapter" data-progress="3" style="left: 40%;"></a>
     
-        <a href="./routes.html" title="Routes" class="chapter  new-chapter" data-progress="4" style="left: 50%;"></a>
+        <a href="./routes.html" title="Routes" class="chapter done new-chapter" data-progress="4" style="left: 50%;"></a>
     
         <a href="./404.html" title="404 errors" class="chapter  new-chapter" data-progress="5" style="left: 60%;"></a>
     
@@ -243,27 +243,81 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_914">
+                    <section class="normal" id="section-gitbook_918">
                     
-                        <h1 id="express-the-node-framework">Express, the Node framework</h1>
-<p><a href="http://expressjs.com/" target="_blank">Expressjs</a> is the web application framework for Node.js apps.</p>
-<blockquote>
-<p>Express is a minimal and flexible node.js web application framework, providing a robust set of features for building single and multi-page, and hybrid web applications.</p>
-</blockquote>
-<p>It has a wealth of <a href="http://expressjs.com/4x/api.html" target="_blank">APIs</a> and is FAS AS HELL!!</p>
-<p>Express is well known for NOT following offer Rails as far as frameworks go, but more so it takes after another Ruby framework called <a href="http://www.sinatrarb.com/" target="_blank">Sinatra</a>. The concept is simple, the framework gives you enough to get things up and running as fast as possible and all without getting in your way.</p>
-<p>For the most part, Express continues to live up to this statement.</p>
-<p>For this workshop, we will be using Express as the core tool for getting a web app up and running with a server, route support, error pages, loggers, etc ...</p>
-<h2 id="install-express">Install Express</h2>
-<p>Installing Express with npm is really easy. Keep in mind that there are two parts to Express, the library that runs it and an awesome generator.</p>
-<p>To install Express:</p>
-<pre><code>$ npm install express -g
-</code></pre><p>To install the generator:</p>
-<pre><code>$ npm install express-generator -g
-</code></pre><h2 id="generator-version">Generator version</h2>
-<p>Express 4.0 was recently released and there are some who are not jiggy with that. So, npm has a way of specifying the version of generator you install.</p>
-<pre><code>$ npm install -g express-generator@3
+                        <h1 id="fun-with-routes">Fun with Routes</h1>
+<p>The <code>app.VERB()</code> methods provide the routing functionality in Express, where <strong>VERB</strong> is one of the HTTP verbs, such as <code>app.post()</code>. Multiple callbacks may be given, all are treated equally, and behave just like middleware, with the one exception that these callbacks may invoke <code>next(&#39;route&#39;)</code> to bypass the remaining route callback(s). This mechanism can be used to perform pre-conditions on a route then pass control to subsequent routes when there is no reason to proceed with the route matched.</p>
+<p>The following snippet illustrates the most simple route definition possible. Express translates the path strings to regular expressions, used internally to match incoming requests. Query strings are <strong>not</strong> considered when peforming these matches, for example <code>GET /</code> would match the following route, as would <code>GET /?name=tobi</code>.</p>
+<p><a href="http://expressjs.com/4x/api.html#app.VERB" target="_blank">source</a></p>
+<pre><code class="lang-javascript">app.VERB(path, [callback...], callback)
 </code></pre>
+<p>Basic example using this syntax that will send a string of text to the browser is:</p>
+<pre><code class="lang-javascript">app.get(<span class="hljs-string">'/'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(req, res)</span>{</span>
+  res.send(<span class="hljs-string">'hello world'</span>);
+});
+</code></pre>
+<p>Lets get into setting up some routes. In the <code>app.js</code> file the following line is how this comes together:</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> routes = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./routes/index'</span>);
+</code></pre>
+<p>What&#39;s happening here? Basically, Express is setting the <code>var</code> of <code>routes</code> to require the path and file of <code>./routes.index</code>.</p>
+<p>This var is then used to set the root path of the app</p>
+<pre><code class="lang-javascript">app.use(<span class="hljs-string">'/'</span>, routes);
+</code></pre>
+<p>Another thing we can do is <code>res.send()</code> and what ever we put in there will get sent directly to the browser. For example:</p>
+<pre><code class="lang-javascript">res.send(<span class="hljs-string">'hello world'</span>)
+</code></pre>
+<p>Using the <code>res.send()</code> we can do fun things like even send in JSON objects.</p>
+<pre><code class="lang-javascript">res.send({&#39;name&#39;:&#39;Bob Goldcat&#39;, &#39;age&#39;: &#39;41&#39;})
+``
+
+This method allows us to then keep all our routes in the `index.js` file if needed. There are better ways to address a more complicated routing solution, but for the scope of this workshop, this is great.
+
+## What&#39;s in the index.js file?
+
+Looking at our `index.js` file you should see the following:
+
+```javascript
+var express = require(&#39;express&#39;);
+var router = express.Router();
+
+/* GET home page. */
+router.get(&#39;/&#39;, function(req, res) {
+  res.render(&#39;index&#39;, { title: &#39;Express&#39; });
+});
+
+module.exports = router;
+</code></pre>
+<h5 id="router-get">router.get</h5>
+<p>This is the function that will &#39;get&#39; the URL path of <code>/</code>. Then we need to create a function that will make a <code>req</code> (request) and <code>res</code> (response). The is another concept of <code>next</code> for chaining events would go here as well, but not shown in this example.</p>
+<h5 id="what-is-module-exports-">What is module.exports?</h5>
+<p>This is the object that&#39;s actually returned as the result of a require call. This is a Node feature, more on this at <a href="http://nodejs.org/api/modules.html#modules_module_exports" target="_blank">nodejs.org/api</a>.</p>
+<h2 id="build-a-new-route">Build a new route</h2>
+<p>Looking at the syntax pattern, if we wanted to add a new route to the app, we can simply do something like the following:</p>
+<pre><code class="lang-javascript">router.get(<span class="hljs-string">'/app'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(req, res)</span> {</span>
+  res.render(<span class="hljs-string">'app'</span>, { title: <span class="hljs-string">'Express'</span> });
+});
+</code></pre>
+<p>Keep in mind that the value of the URL, <code>/app</code>, does not need to be the same value of the file itself. If the name of the view was <code>foo.jade</code> we could do the following:</p>
+<pre><code class="lang-javascript">router.get(<span class="hljs-string">'/app'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(req, res)</span> {</span>
+  res.render(<span class="hljs-string">'foo'</span>, { title: <span class="hljs-string">'Express'</span> });
+});
+</code></pre>
+<h2 id="it-s-a-route-it-s-a-controller-">It&#39;s a route? It&#39;s a controller?</h2>
+<p>What&#39;s interesting about this is that the route function is containing logic. Inside the route is a <code>res.render</code> function:</p>
+<pre><code class="lang-javascript">res.render(<span class="hljs-string">'foo'</span>, { title: <span class="hljs-string">'Express'</span> });
+</code></pre>
+<p>In the view template we see this:</p>
+<pre><code class="lang-jade">h1= title
+p Welcome to #{title}
+</code></pre>
+<p>These are two examples of how we can pull data from the &#39;controller/route&#39; and display in the view. In this example we get the HTML output of:</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">h1</span>&gt;</span>Express<span class="hljs-tag">&lt;/<span class="hljs-title">h1</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>Welcome to Express<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+</code></pre>
+<p>All of this seems to be a bleed of concerns as the route may also contain controller info? This is true and there is a movement in the community to change the name of the dir from <code>routes</code> to <code>controllers</code>.</p>
+<p>A great example of this can be seen at <a href="https://github.com/visionmedia/express/tree/master/examples/mvc" target="_blank">Holowaychuk</a>&#39;s Express MVC example repo.</p>
+<p>But for the sake of this workshop and consistency, we will keep the current convention.</p>
+
                     
                     </section>
                 
@@ -272,10 +326,10 @@
         </div>
 
         
-        <a href="./node-npm.html" class="navigation navigation-prev "><i class="fa fa-angle-left"></i></a>
+        <a href="./new-app.html" class="navigation navigation-prev "><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="./new-app.html" class="navigation navigation-next "><i class="fa fa-angle-right"></i></a>
+        <a href="./404.html" class="navigation navigation-next "><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

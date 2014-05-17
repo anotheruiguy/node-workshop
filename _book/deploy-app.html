@@ -40,7 +40,7 @@
 
 
         
-    <div class="book"  data-level="12" data-basepath="." data-revision="1400297380939">
+    <div class="book"  data-level="12" data-basepath="." data-revision="1400298585120">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -263,7 +263,7 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_1264">
+                    <section class="normal" id="section-gitbook_1342">
                     
                         <h1 id="deploy-your-first-app">Deploy your first app</h1>
 <p>At this point, you should have an app that works locally on your computer. The following steps outline updates you need to make in order to deploy the codes.</p>
@@ -289,12 +289,12 @@
 }
 </code></pre><p>At the end of the <code>dependencies&quot;: { ... }</code> object, you need to add a comma <code>,</code> so that we can add more code.  First let&#39;s add the <code>main</code> keyword:</p>
 <pre><code>&quot;main&quot;: &quot;app.js&quot;,
-</code></pre><p>Notice the trailing comma? This is because we are going to add more stuff. After that, add in the <code>engines</code> keyword and the specific engines we need to run this app:</p>
+</code></pre><p>Notice the trailing comma? This is because we are going to add more stuff. After that, add in the <code>engines</code> object and the specific engines we need to run this app:</p>
 <pre><code>&quot;engines&quot;: {
   &quot;node&quot;: &quot;0.10.26&quot;,
   &quot;npm&quot;: &quot;1.4.3&quot;
 }
-</code></pre><p>Notice, this is the last line, so no trailing comma. We want it all to look like the following:</p>
+</code></pre><p>You should have something that looks like the following:</p>
 <pre><code>{
   &quot;name&quot;: &quot;application-name&quot;,
   &quot;version&quot;: &quot;0.0.1&quot;,
@@ -317,13 +317,33 @@
     &quot;npm&quot;: &quot;1.4.3&quot;
   }
 }
-</code></pre><h2 id="add-the-procfile">Add the Procfile</h2>
+</code></pre><h3 id="don-t-forget-the-grunt-bower">Don&#39;t forget the Grunt + Bower</h3>
+<p>If at this time you do not have any of the Grunt packages or Bower in the <code>dependenciess</code> object, we need to get that in there.</p>
+<p>You can either add them manually to the <code>package.json</code> file or dun:</p>
+<pre><code>$ npm install --save grunt
+$ npm install --save grunt-sass
+$ npm install --save bower
+</code></pre><p>Something that you probably don&#39;t have is the ability for the deployed server to run the Grunt tasks. For this we need Grunt-CLI.</p>
+<pre><code>$ npm install --save grunt-cli
+</code></pre><p>Right about now, you should be looking pretty good.</p>
+<h3 id="postinstall-instructions">Postinstall instructions</h3>
+<p>When we deploy the codes to Heroku, we have to tell it to run some commands, basically install the Bower packages and run the Grunt tasks. To do this, we need to add the instructions within the <code>scripts</code> object of the <code>package.json</code> file.</p>
+<p>Directly under the <code>&quot;start&quot;: &quot;node ./bin/www&quot;</code>, add:</p>
+<pre><code>&quot;postinstall&quot;: &quot;./node_modules/.bin/bower install &amp;&amp; ./node_modules/.bin/grunt&quot;
+</code></pre><p>There, now we have everything that Heroku needs to install the packages and run the scripts.</p>
+<h2 id="add-the-procfile">Add the Procfile</h2>
 <p>This is a file that Heroku needs in order to start the app.</p>
 <pre><code>$ touch Procfile
 </code></pre><p>Add the following code:</p>
 <pre><code>web: npm start
-</code></pre><h2 id="make-this-a-git-repo">Make this a Git repo</h2>
-<p>It is important to make this a git repo BEFORE you create the Heroku server.</p>
+</code></pre><p>Heroku will use this to kick start the app.</p>
+<h2 id="make-this-a-git-repo">Make this a Git repo</h2>
+<p>It is important to make this a git repo BEFORE you create the Heroku server. <strong>WAIT!</strong> Before you go all crazy on the Git, there are some things we need to do.</p>
+<p>You should have a <code>.gitignore</code> file in your repo at this point. open that up and make sure you are ignoring all the <code>node_modules</code>, all the <code>bower_components</code> and anything in the <code>/stylesheets/*.css</code> spectrum.</p>
+<pre><code>node_modules
+public/stylesheets/*.css
+bower_components
+</code></pre><p>Great. Now you can <code>git init</code> your repo.</p>
 <pre><code>$ git add .
 $ git commit -m &quot;initial commit&quot;
 </code></pre><p>It is not required at this time to make this a Github repo, but you may want to do this if you make this a real app.</p>

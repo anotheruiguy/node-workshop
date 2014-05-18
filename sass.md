@@ -4,7 +4,7 @@ Sass, and it's port libsass, is the leading CSS pre-processor and by far the mos
 
 All of this doesn't really matter. The only thing this means is that we need to go through some additional, although extremely simple, setup steps.
 
-First, let's install Node-Sass:
+## First, let's install Node-Sass:
 
 ```
 $ npm install --save node-sass
@@ -36,5 +36,30 @@ module.exports = function(grunt) {
 ```
 
 In the `files:` object you will list the path to the output CSS and then the path to the input SCSS file.
+
+## Add the Sass
+
+To get this running, we need to add the `sass` directory and put the `style.scss` file in there. In the root of the project:
+
+```
+$ mkdir sass
+```
+
+In the `sass` directory:
+
+```
+$ touch style.scss
+```
+
+And add the following Sass so that we know this is working:
+
+```scss
+$color: orange;
+
+body {
+  background-color: $color;
+}
+
+## Run Grunt
 
 At this point we are ready to run a `grunt` command and process some Sass.

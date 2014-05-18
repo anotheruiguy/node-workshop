@@ -59,6 +59,7 @@ $color: orange;
 body {
   background-color: $color;
 }
+```
 
 ## Run Grunt
 

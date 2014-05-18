@@ -139,6 +139,14 @@ Adding Gulp as a development dependency we get the following update to the `pack
 }
 ```
 
+### Learn more about npm
+
+npm is an amazingly complex utility when it comes to package management. See this [npm cheatsheet](http://blog.nodejitsu.com/npm-cheatsheet/) for more in-depth information.
+
+### Learn more about package.json
+
+The `package.json` has many features. To learn more about how this all works [package.json An interactive guide](http://package.json.nodejitsu.com/#) is an amazing tool to learn from.
+
 ## Maintaining dependencies
 
 Unlike other package managers, npm installs these libraries directly into the root of your project. Without extra steps, these libraries will easily get committed to your version control.

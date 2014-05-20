@@ -10,5 +10,6 @@
 * [Grunt watch](grunt-watch.md)
 * [Bower](bower.md)
 * [Bower + Grunt + Sass](bower-grunt-sass.md)
+* [Add data](add-some-data.md)
 * [Heroku](heroku.md)
 * [Deploy the codes](deploy-app.md)

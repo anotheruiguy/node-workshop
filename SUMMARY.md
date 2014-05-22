@@ -6,6 +6,7 @@
 * [Routes](routes.md)
 * [404 errors](404.md)
 * [Grunt](grunt.md)
+* [Gulp](gulp.md)
 * [Sass](sass.md)
 * [Grunt watch](grunt-watch.md)
 * [Bower](bower.md)

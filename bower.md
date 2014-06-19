@@ -152,6 +152,20 @@ Now that you have this in your Grunt file, you can simply reference the library'
 @import "bourbon";
 ```
 
+## Bower in your npm
+One of the things that I find slightly annoying about using Bower is that I have to run separate commands when initialing a new project. I already have to use npm, can't I just bind these things together?
+
+Yes, yes you can. In your `package.json` file, simply extend the `scripts` object and pass in the the `bower install` command. This is why I really LOVE this stuff!
+
+```
+"scripts": {
+  "install": "bower install"
+}
+```
+
+Now, when you run `npm install` this will not only install all your Node packages, but install your Bower packages as well. NICE!
+
+
 ## Bower behind the firewall
 If you find yourself behind a firewall that does not allow for the `git://[repo]` protocol, there is a fix for this. First, I suggest maually doing a clone using the `https://[repo]` protocol to make sure that this is really the issue. If the `https://[repo]` protocol works, then you may want to make the following update:
 
